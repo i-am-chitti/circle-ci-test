@@ -1,0 +1,69 @@
+.export-button {
+	background-color: #3e7da6;
+	border: none;
+	color: white;
+	padding: 7px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.selector_input {
+	width: 40%;
+	margin-right: 15px;
+}
+
+.token-link {
+	&::before {
+		font-size: 30px !important;
+	}
+
+	&:focus {
+		color: #043959;
+		box-shadow: 0 0 0 1px #ffffff, 0 0 2px 1px rgba(255, 255, 255, 0.8);
+		outline: 0px solid transparent;
+	}
+}
+
+.copyToClipboard {
+	margin-right: 15px !important;
+}
+
+
+.wp-list-table .column-id {
+	width: 50px;
+}
+
+// form id. 
+.wp-list-table .column-form_id {
+	width: 80px;
+}
+
+// email.
+.wp-list-table .column-23 {
+	width: 25%;
+}
+
+// resume_token.
+.wp-list-table .column-resume_token {
+	width: 25%;
+}
+
+// resume_url.
+.wp-list-table .column-resume_url {
+	width: 25%;
+}
+
+// disable.
+.wp-list-table .column-disable {
+	width: 20%;
+}
+
+.cox-notice {
+	margin: 0px;
+	padding: 10px;
+	margin-right: 20px;
+}
