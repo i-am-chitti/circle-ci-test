@@ -20,7 +20,7 @@ jobs:
       - run: php -m
       - run: php -i
       - run: composer install --working-dir=app/plugins --prefer-dist --optimize-autoloader --no-progress --no-interaction --no-dev --no-plugins --no-scripts
-      - run: composer show -i
+      - run: composer show --working-dir=app/plugins
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
