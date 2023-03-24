@@ -21,7 +21,12 @@ jobs:
       - run: php -i
       - run: composer install --working-dir=app/plugins --prefer-dist --optimize-autoloader --no-progress --no-interaction --no-dev --no-plugins --no-scripts
       - run: composer show --working-dir=app/plugins
-      - run: npm ci --prefix app/plugins
+#      - run: npm ci --prefix app/plugins
+      - run:
+          name: Build
+          environment:
+            CI: true
+          command: npm ci --prefix app/plugins
       - run: npm run test --prefix app/plugins
 
 # Invoke jobs via workflows
