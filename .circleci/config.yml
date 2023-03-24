@@ -9,7 +9,7 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/php:8.2-node
+      - image: cimg/php:8.0-node
 
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
@@ -19,24 +19,15 @@ jobs:
       - run: node --version
       - run: php -m
       - run: php -i
-      # Build Steps
-      # Building composer dependencies
+      - run: composer install --working-dir=app/plugins/cox-esntial-motors-features --prefer-dist --optimize-autoloader --no-progress --no-interaction --no-dev --no-plugins --no-scripts
+      - run: composer show --working-dir=app/plugins/cox-esntial-motors-features
+#      - run: npm ci --prefix app/plugins
       - run:
-          name: Install Composer Dependencies
-          command: |
-            cd app/plugins/cox-esntial-motors-features
-            composer install --prefer-dist --optimize-autoloader --no-progress --no-interaction --no-dev --no-plugins --no-scripts
-            composer --no-interaction validate --no-check-all
-            echo "cox-esntial-motors-features Plugin composer dependencies installation complete"
-
-      # Building asset files for features plugin
-      - run:
-          name: Build files for cox-esntial-motors-features plugin
-          command: |
-            cd app/plugins/cox-esntial-motors-features
-            npm ci
-            npm run build:prod
-            echo "cox-esntial-motors-features Plugin build complete"
+          name: Build
+          environment:
+            CI: true
+          command: npm ci --prefix app/plugins/cox-esntial-motors-features
+      - run: npm run test --prefix app/plugins/cox-esntial-motors-features
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
