@@ -19,15 +19,24 @@ jobs:
       - run: node --version
       - run: php -m
       - run: php -i
-      - run: composer install --working-dir=app/plugins/cox-esntial-motors-features --prefer-dist --optimize-autoloader --no-progress --no-interaction --no-dev --no-plugins --no-scripts
-      - run: composer show --working-dir=app/plugins/cox-esntial-motors-features
-#      - run: npm ci --prefix app/plugins
+      # Build Steps
+      # Building composer dependencies
       - run:
-          name: Build
-          environment:
-            CI: true
-          command: npm ci --prefix app/plugins/cox-esntial-motors-features
-      - run: npm run test --prefix app/plugins/cox-esntial-motors-features
+          name: Install Composer Dependencies
+          command: |
+            cd plugins/cox-esntial-motors-features
+            composer install --prefer-dist --optimize-autoloader --no-progress --no-interaction --no-dev --no-plugins --no-scripts
+            composer --no-interaction validate --no-check-all
+            echo "cox-esntial-motors-features Plugin composer dependencies installation complete"
+
+      # Building asset files for features plugin
+      - run:
+          name: Build files for cox-esntial-motors-features plugin
+          command: |
+            cd plugins/cox-esntial-motors-features
+            npm ci
+            npm run build:prod
+            echo "cox-esntial-motors-features Plugin build complete"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
