@@ -11,7 +11,7 @@ jobs:
     docker:
       - image: cimg/base:stable
       - image: cimg/php:8.2
-      - image: cimg/node:16
+      - image: cimg/node:16.14.2
 
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
