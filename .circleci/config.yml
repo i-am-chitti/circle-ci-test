@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Install Composer Dependencies
           command: |
-            cd plugins/cox-esntial-motors-features
+            cd app/plugins/cox-esntial-motors-features
             composer install --prefer-dist --optimize-autoloader --no-progress --no-interaction --no-dev --no-plugins --no-scripts
             composer --no-interaction validate --no-check-all
             echo "cox-esntial-motors-features Plugin composer dependencies installation complete"
@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Build files for cox-esntial-motors-features plugin
           command: |
-            cd plugins/cox-esntial-motors-features
+            cd app/plugins/cox-esntial-motors-features
             npm ci
             npm run build:prod
             echo "cox-esntial-motors-features Plugin build complete"
